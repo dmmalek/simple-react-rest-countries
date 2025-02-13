@@ -5,12 +5,16 @@ import Country from "./Country";
 const Countries = () => {
   const [countries, setCountries] = useState([]);
   const [visitedCountries, setVisitedCountries] = useState([]);
+  const [visitedFlag, setVisitedFlag] = useState([]);
 
   const handleVisitedCountries = (country) => {
-    console.log("add country");
-    console.log(country);
     const newVisitedCountries = [...visitedCountries, country];
     setVisitedCountries(newVisitedCountries);
+  };
+  const handleVisitedFlag = (country) => {
+    console.log("visited flag");
+    const newVisitedFlag = [...visitedFlag, country];
+    setVisitedFlag(newVisitedFlag);
   };
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -27,9 +31,17 @@ const Countries = () => {
             <li key={country.cca2}>{country.name.common}</li>
           ))}
         </ul>
+
+        <div>
+          {visitedFlag.map((flag) => (
+            <img key={flag.cca2} src={flag.flags.png} alt={flag.name.common} />
+          ))}
+        </div>
       </div>
+
       {countries.map((country) => (
         <Country
+          handleVisitedFlag={handleVisitedFlag}
           handleVisitedCountries={handleVisitedCountries}
           key={country.cca2}
           country={country}
