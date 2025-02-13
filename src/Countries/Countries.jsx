@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import Country from "./Country";
+import "./Countries.css";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
@@ -11,9 +12,8 @@ const Countries = () => {
     const newVisitedCountries = [...visitedCountries, country];
     setVisitedCountries(newVisitedCountries);
   };
-  const handleVisitedFlag = (country) => {
-    console.log("visited flag");
-    const newVisitedFlag = [...visitedFlag, country];
+  const handleVisitedFlag = (flag) => {
+    const newVisitedFlag = [...visitedFlag, flag];
     setVisitedFlag(newVisitedFlag);
   };
   useEffect(() => {
@@ -34,19 +34,25 @@ const Countries = () => {
 
         <div>
           {visitedFlag.map((flag) => (
-            <img key={flag.cca2} src={flag.flags.png} alt={flag.name.common} />
+            <img
+              className="img"
+              key={flag.cca2}
+              src={flag.flags.png}
+              alt={flag.name.common}
+            />
           ))}
         </div>
       </div>
-
-      {countries.map((country) => (
-        <Country
-          handleVisitedFlag={handleVisitedFlag}
-          handleVisitedCountries={handleVisitedCountries}
-          key={country.cca2}
-          country={country}
-        ></Country>
-      ))}
+      <div className="flex">
+        {countries.map((country) => (
+          <Country
+            handleVisitedFlag={handleVisitedFlag}
+            handleVisitedCountries={handleVisitedCountries}
+            key={country.cca2}
+            country={country}
+          ></Country>
+        ))}
+      </div>
     </div>
   );
 };

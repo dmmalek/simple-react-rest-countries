@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Country.css";
 
 const Country = ({ country, handleVisitedCountries, handleVisitedFlag }) => {
   const { name, flags, area, population, cca2 } = country;
@@ -8,19 +9,22 @@ const Country = ({ country, handleVisitedCountries, handleVisitedFlag }) => {
     setVisited(!visited);
   };
   return (
-    <div>
+    <div className="border">
       <p>Name: {name?.common}</p>
-      <img src={flags?.png} alt="" />
+      <img className="img" src={flags?.png} alt="" />
       <p>Population:{population}</p>
       <p>Area: {area}</p>
       <p>
         <small>Code: {cca2}</small>
       </p>
-      <button onClick={() => handleVisitedCountries(country)}>
+      <button
+        className="button-4"
+        onClick={() => handleVisitedCountries(country)}
+      >
         Marks as Visited
       </button>
-      <button onClick={() => handleVisitedFlag(country)}>
-        Mark as Visited Flag
+      <button className="button-4" onClick={() => handleVisitedFlag(country)}>
+        Add Visited Flag
       </button>
       <br />
       <button onClick={handleVisited}>{visited ? "Visited" : "Going"}</button>
