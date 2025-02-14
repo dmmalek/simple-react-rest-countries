@@ -27,7 +27,9 @@ const Country = ({ country, handleVisitedCountries, handleVisitedFlag }) => {
         Add Visited Flag
       </button>
       <br />
-      <button onClick={handleVisited}>{visited ? "Visited" : "Going"}</button>
+      <button className="button-4" onClick={handleVisited}>
+        {visited ? "Visited" : "Going"}
+      </button>
       {visited
         ? "I was visit this country"
         : "I'm going to visit this country "}
